@@ -1,0 +1,43 @@
+
+CREATE TABLE GithubRepos (
+    id INTEGER NOT NULL PRIMARY KEY,
+    full_name TEXT NOT NULL,
+    description TEXT,
+    rating INTEGER NOT NULL
+    );
+
+
+
+selectAll:
+SELECT *
+FROM GithubRepos;
+
+insert:
+INSERT INTO GithubRepos(id, full_name, description, rating)
+VALUES (?, ?, ?, ?);
+
+
+searchByName:
+SELECT *
+FROM GithubRepos
+WHERE full_name LIKE ?;
+
+
+searchByDescription:
+SELECT *
+FROM GithubRepos
+WHERE description LIKE :descr;
+
+searchAll:
+SELECT *
+FROM GithubRepos
+WHERE description LIKE ? OR full_name LIKE ? OR rating = ?;
+
+searchByRating:
+SELECT *
+FROM GithubRepos
+WHERE rating = ?;
+
+deleteDatabase:
+DELETE
+FROM GithubRepos;
