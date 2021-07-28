@@ -3,7 +3,7 @@ CREATE TABLE GithubRepos (
     id INTEGER NOT NULL PRIMARY KEY,
     full_name TEXT NOT NULL,
     description TEXT,
-    rating INTEGER NOT NULL
+    rating INTEGER
     );
 
 

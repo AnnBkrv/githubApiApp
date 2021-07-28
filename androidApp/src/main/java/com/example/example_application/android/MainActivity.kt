@@ -2,7 +2,7 @@ package com.example.example_application.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.example_application.GithubRemoteImpl
+import com.example.example_application.remote.GithubRemoteImpl
 
 //import com.example.kmmsample.shared.Greeting
 import android.widget.TextView
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         runBlocking {
             // diese Fkt wartet, bis diese Fkt ganz durchläuft
             //ne suspend Fkt kann man nur von einer anderen Suspend Fkt oder aus einer Coroutine aufrufen. das ist eine Coroutine
-            launch { tv.text = GithubRemoteImpl().githubApiCall().toString() } // simultaneous functions
+            launch { tv.text = GithubRemoteImpl().fetchRepositories("memorize").toString() } // simultaneous functions
         }
     }
 }
