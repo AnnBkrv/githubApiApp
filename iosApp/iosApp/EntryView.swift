@@ -12,16 +12,16 @@ import shared
 
 struct EntryView : View {
     
-    var entry : GitHubEntry
+    var entry : Repository
 
     var body : some View {
-        Text(entry.creator.capitalized)
+//        Text(entry.creator.capitalized)
         Text(entry.name.capitalized)
         Text(rating(entry: entry))
-        Text(entry.descr?.capitalized ?? "No Description Available")
+        Text(entry.description_?.capitalized ?? "No Description Available")
     }
 
-    func rating (entry : GitHubEntry) -> String {
+    func rating (entry : Repository) -> String {
         if entry.stars == nil {
             return "No Rating Available"
         }
@@ -29,7 +29,7 @@ struct EntryView : View {
             return "✰"
         }
         else {
-            return String(repeating: "⭐️", count: entry.stars!)
+            return String(repeating: "⭐️", count: entry.stars as! Int)
         }
     }
     
@@ -42,46 +42,47 @@ func ??<T>(lhs: Binding<Optional<T>>, rhs: T) -> Binding<T> {
     )
 }
 
-struct ItemAddView : View {
-    
-    @ObservedObject var store : EntriesStorage
-    
-    @State var name = ""
-    @State var creator = ""
-    @State var descr : String? = nil
-    @State var stars : Int? = nil
-    
-
-    var body: some View {
-        Form {
-            Section {
-                TextField("Enter the repository's name", text: $name)
-                TextField("Enter the creator", text: $creator)
-                TextField("Enter the description", text: $descr ?? "")
-//                Picker("", selection: $stars) {
-//                    ForEach(1...5, id : \.self){
-//                        Text("\($0)")
-//                    }
-//                }
-            }
-        }
-        Picker("", selection: $stars) {
-            ForEach(1...5, id : \.self){
-                Text("\($0)")
-            }
-        }
-        Button(action: {
-            let newItem = GitHubEntry(name: name, descr: descr, creator: creator, stars: stars)
-            store.entries.append(newItem)
-            }) {
-              HStack {
-                Image(systemName: "plus.circle.fill")
-                Text("Add new item")
-              }
-        }.padding()
-    
-    }
-}
+//struct ItemAddView : View {
+//    
+//    @ObservedObject var store : EntriesStorage
+//    
+//    @State var name = ""
+//    @State var creator = ""
+//    @State var descr : String? = nil
+////    @State var stars : Int? = nil
+//    @State var stars : Int = 0
+//    
+//
+//    var body: some View {
+//        Form {
+//            Section {
+//                TextField("Enter the repository's name", text: $name)
+//                TextField("Enter the creator", text: $creator)
+//                TextField("Enter the description", text: $descr ?? "")
+////                Picker("", selection: $stars) {
+////                    ForEach(1...5, id : \.self){
+////                        Text("\($0)")
+////                    }
+////                }
+//            }
+//        }
+//        Picker("", selection: $stars) {
+//            ForEach(1...5, id : \.self){
+//                Text("\($0)")
+//            }
+//        }
+//        Button(action: {
+//            let newItem = Repository(name: name, description_: descr, stars: stars as! KotlinInt)
+//            store.entries.append(newItem)
+//            }) {
+//              HStack {
+//                Image(systemName: "plus.circle.fill")
+//                Text("Add new item")
+//              }
+//        }.padding()
+//    
+//    }
+//}
 
 //func test () {
 //    GithubApiCall().githubApiCall(completionHandler: { repos , _ in

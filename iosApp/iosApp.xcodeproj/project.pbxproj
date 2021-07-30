@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* EntryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* EntryCollectionView.swift */; };
+		AF7DA2A826B34B19004AD696 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7DA2A726B34B19004AD696 /* SearchBar.swift */; };
+		AF7DA2AA26B4074D004AD696 /* EntriesDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7DA2A926B4074D004AD696 /* EntriesDatabaseView.swift */; };
+		AF7DA2AC26B4090B004AD696 /* SearchWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7DA2AB26B4090B004AD696 /* SearchWindowView.swift */; };
+		AF7DA2AE26B40CAE004AD696 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7DA2AD26B40CAE004AD696 /* TabBarController.swift */; };
 		AF8D7577269DF8520052E06F /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8D7576269DF8520052E06F /* EntryView.swift */; };
 		F7606236E144D9BAA01EACCB /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F6543105B60968344FB6FE /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
@@ -20,6 +24,10 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* EntryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF7DA2A726B34B19004AD696 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		AF7DA2A926B4074D004AD696 /* EntriesDatabaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesDatabaseView.swift; sourceTree = "<group>"; };
+		AF7DA2AB26B4090B004AD696 /* SearchWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWindowView.swift; sourceTree = "<group>"; };
+		AF7DA2AD26B40CAE004AD696 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AF8D7576269DF8520052E06F /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		BCC466019ED1F683856FD2F6 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,6 +74,10 @@
 			isa = PBXGroup;
 			children = (
 				7555FF82242A565900829871 /* EntryCollectionView.swift */,
+				AF7DA2AB26B4090B004AD696 /* SearchWindowView.swift */,
+				AF7DA2AD26B40CAE004AD696 /* TabBarController.swift */,
+				AF7DA2A926B4074D004AD696 /* EntriesDatabaseView.swift */,
+				AF7DA2A726B34B19004AD696 /* SearchBar.swift */,
 				AF8D7576269DF8520052E06F /* EntryView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
@@ -177,8 +189,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				AF7DA2A826B34B19004AD696 /* SearchBar.swift in Sources */,
 				7555FF83242A565900829871 /* EntryCollectionView.swift in Sources */,
 				AF8D7577269DF8520052E06F /* EntryView.swift in Sources */,
+				AF7DA2AE26B40CAE004AD696 /* TabBarController.swift in Sources */,
+				AF7DA2AC26B4090B004AD696 /* SearchWindowView.swift in Sources */,
+				AF7DA2AA26B4074D004AD696 /* EntriesDatabaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 98CRFKCF8B;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -321,7 +338,7 @@
 					"\"shared\"",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp.AnnasApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -334,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 98CRFKCF8B;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -348,7 +366,7 @@
 					"\"shared\"",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp.AnnasApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

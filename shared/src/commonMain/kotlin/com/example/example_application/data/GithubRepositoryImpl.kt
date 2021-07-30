@@ -16,6 +16,8 @@ class GithubServiceImpl (private val cache : GithubCache,
 
 
 // TODO: Use the githubServiceImplementation in Swift
-// add a search field and make it work
+// add a search field and make it work. it should use github service
 // go over all the new information
 // do something else on startup. a random item out of a list of search terms like "kotlin"/ "swift", search for most popular repos
+
+// presentation layer. view model. mvi pattern research

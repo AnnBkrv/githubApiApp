@@ -2,14 +2,19 @@ import SwiftUI
 import shared
 
 
+// MARK: Here the search results are displayed
+
 struct EntryCollectionView: View {
     
     @ObservedObject var entries = EntriesStorage()
-    @State var plusButtonTapped = false
+    @State private var searchText = ""
+    //@State var entries = [Repository]()
 
 	var body: some View {
         NavigationView {
             List {
+//                SearchBar(text : $searchText, entries : entries.entries) // after the search button has been pressed, the entries here need to change
+                // TODO: Once searchText has been changed, the feed should be refreshed and the results added to the sql database. all the results should be in the database, but only the new ones should show. Maybe there should be a separate database view with a search within the database and the search/ results view.
                 ForEach(entries.entries , id: \.self) {
                     entry in
                     NavigationLink(destination:
@@ -18,51 +23,31 @@ struct EntryCollectionView: View {
                     }
                 }
             }
-//            .navigationBarItems(trailing: Button(action: {
-//                plusButtonTapped = true
-//            }, label: {
-//                Image(systemName: "plus").imageScale(.large)
-//            })).sheet(isPresented : $plusButtonTapped){
-//                ItemAddView(store: entries)
-//            }
         }
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//	static var previews: some View {
-//	EntryCollectionView()
-//	}
-//}
-
-
-struct GitHubEntry : Hashable {
-    
-    let id = UUID()
-    let name : String
-    let descr : String?
-    let creator : String
-    let stars : Int?
-    
-}
-
-extension GitHubEntry : Identifiable { }
 
 
 class EntriesStorage : ObservableObject {
-    @Published var entries : [GitHubEntry] = []
+    @Published var entries: [Repository] = []
     
-    init( ){
-        
-        GithubRemoteImpl().githubApiCall(completionHandler: { repos , _ in
-            guard let repos = repos else { return }
-            let reposMapped = repos.map { repo in
-                GitHubEntry(name: repo.full_name, descr: repo.description_, creator: String(repo.id), stars: Int(repo.stargazers_count)/20)
-            }
-            self.entries.append(contentsOf: reposMapped) // an escaping closure -> self. needed. the results of the closure are used outside of the closure
-            // self. so the entries var doesn't get deleted according to automatic reference counting
+    private let service: GithubService = GithubServiceImpl(
+        cache: GithubCacheImpl(driverFactory: DriverFactory()),
+        remote: GithubRemoteImpl()
+    )
+    
+    init() {
+        fetchRepositories(query: "memorize")
+    }
+    
+    func fetchRepositories(query: String) {
+        // [weak self] is a capture list. It tells Swift that we want to use these objects in the closure so they have to stay in memory.
+        // weak tells Swift to only keep a weak reference to object so it`s basically optional
+        service.getRepos(query: query, completionHandler: { [weak self] repos , _ in
+            guard let self = self, let repos = repos else { return }
+            self.entries = repos
         })
-        
     }
     
 }
